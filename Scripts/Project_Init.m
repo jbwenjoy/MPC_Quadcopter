@@ -1,7 +1,9 @@
 disp("Project MPC Quadcopter Start!");
 
 load("MPCDesignerSession.mat");
-load("mpc1");
+run("Scripts\mpc1.m");
+
+open("Models\MPC_Quad.slx")
 
 g = 9.81;
 mass = 4;
