@@ -1,7 +1,7 @@
 disp("Project MPC Quadcopter Start!");
 
 load("MPCDesignerSession.mat");
-run("Scripts\mpc1.m");
+%run("Scripts\mpc1_design.m");
 
 open("Models\MPC_Quad.slx")
 
