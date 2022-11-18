@@ -7,8 +7,8 @@ open("Models\MPC_Quad.slx")
 
 % g = 9.81;
 % mass = 4;
-% I_xx = 3.5e-3;
-% I_yy = 3.5e-3;
-% I_zz = 7e-3;
-% I_r = 1.5e-5;
-% l = 0.3;
+% Ixx = 3.5e-3;
+% Iyy = 3.5e-3;
+% Izz = 7e-3;
+% Ir = 1.5e-5;
+% length = 0.3;
