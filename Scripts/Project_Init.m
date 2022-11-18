@@ -5,10 +5,10 @@ load("MPCDesignerSession.mat");
 
 open("Models\MPC_Quad.slx")
 
-g = 9.81;
-mass = 4;
-I_xx = 1;
-I_yy = 1;
-I_zz = 0.5;
-I_r = 0.05;
-l = 0.3;
+% g = 9.81;
+% mass = 4;
+% I_xx = 3.5e-3;
+% I_yy = 3.5e-3;
+% I_zz = 7e-3;
+% I_r = 1.5e-5;
+% l = 0.3;
