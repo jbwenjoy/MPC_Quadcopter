@@ -1,1 +1,2 @@
-disp("Project Closing");
+clear;
+disp("Project Closed");
