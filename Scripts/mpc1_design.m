@@ -8,7 +8,8 @@ mpc1.PredictionHorizon = 50;
 mpc1.ControlHorizon = 5;
 
 %% specify nominal values for inputs and outputs
-mpc1.Model.Nominal.U = [4508;4508;4508;4508];
+% mpc1.Model.Nominal.U = [4508;4508;4508;4508];
+mpc1.Model.Nominal.U = [5000;5000;5000;5000];
 mpc1.Model.Nominal.Y = [0;0;0;0;0;0;0;0;0;0;0;0];
 
 %% specify scale factors for inputs and outputs
@@ -85,16 +86,16 @@ mpc1.OV(12).Max = 0.523598775598299;
 %% specify weights
 mpc1.Weights.MV = [1 1 1 1];
 mpc1.Weights.MVRate = [1 1 1 1];
-mpc1.Weights.OV = [100 10 100 10 100 10 100 10 100 10 100 10];
-mpc1.Weights.ECR = 1;
+mpc1.Weights.OV = [100 10 100 10 500 50 100 10 100 10 100 10];
+mpc1.Weights.ECR = 100000;
 
 %% specify simulation options
-options = mpcsimopt();
-options.MVSignal = mpc1_MVSignal_1;
-options.RefLookAhead = 'off';
-options.MDLookAhead = 'off';
-options.Constraints = 'on';
-options.OpenLoop = 'off';
+% options = mpcsimopt();
+% options.MVSignal = mpc1_MVSignal_1;
+% options.RefLookAhead = 'off';
+% options.MDLookAhead = 'off';
+% options.Constraints = 'on';
+% options.OpenLoop = 'off';
 
 %% run simulation
 % sim(mpc1, 201, mpc1_RefSignal_1, mpc1_MDSignal_1, options);

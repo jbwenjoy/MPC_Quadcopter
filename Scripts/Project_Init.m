@@ -11,12 +11,12 @@ run('Scripts\PID_based_controller_init.m');
 
 % load_system('D:\Bw Jiang\Documents\FCS\MPC_Quadcopter\Models\MPC_Quad.slx');
 
-%% 
+%% Open quadcopter model
 quadPlant = 'Quadcopter_model';
 load_system(quadPlant);
 open_system(quadPlant);
 
-%% 
+%% Define IO for linearization
 io(1) = linio([quadPlant '/n1_rpm'], 1, 'openinput');
 io(2) = linio([quadPlant '/n2_rpm'], 1, 'openinput');
 io(3) = linio([quadPlant '/n3_rpm'], 1, 'openinput');
@@ -34,10 +34,10 @@ io(14) = linio([quadPlant '/Subsystem1'], 10, 'openoutput');
 io(15) = linio([quadPlant '/Subsystem1'], 11, 'openoutput');
 io(16) = linio([quadPlant '/Subsystem1'], 12, 'openoutput');
 
-%% 
+%% Create operating point specifications for the plant initial conditions
 opspec = operspec(quadPlant);
 
-%%
+%% Initial states are 0.
 opspec.States(1).Known = true;
 opspec.States(1).x = 0;
 opspec.States(2).Known = true;
@@ -63,30 +63,32 @@ opspec.States(11).x = 0;
 opspec.States(12).Known = true;
 opspec.States(12).x = 0;
 
-%%
+%% Compute operating point using these specifications
 options = findopOptions('DisplayReport', false);
 op = findop(quadPlant, opspec, options);
 
-%%
+%% Obtain the linear plant model at the specified operating point
 linearPlant = linearize(quadPlant, op, io);
 linearPlant.InputName = {'n1_rpm'; 'n2_rpm'; 'n3_rpm'; 'n4_rpm'};
 linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'd_phi'; 'theta'; 'd_theta'; 'psi'; 'd_psi'};
 
-%%
-pole(linearPlant);
+%% Examine the poles of the linearized plant
+Poles = pole(linearPlant);
 
-%%
+%% Close quadcopter model
 bdclose(quadPlant);
+
+%% Load MPC model
 load_system('Models\MPC_Quad.slx');
 open_system('Models\MPC_Quad.slx');
 
 %% MPC Init and Design
 linearPlant = setmpcsignals(linearPlant);
-
 Ts = 0.05;
 mpc1 = mpc(linearPlant, Ts);
 run('Scripts\mpc1_design.m');
 
 %% Run Simulation
-sim(mpc1);
-
+% sim(mpc1);
+% sim(quadPlant);
+sim("MPC_Quad");
