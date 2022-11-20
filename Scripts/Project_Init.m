@@ -79,6 +79,7 @@ pole(linearPlant);
 bdclose(quadPlant);
 load_system('Models\MPC_Quad.slx');
 open_system('Models\MPC_Quad.slx');
+
 %% MPC Init and Design
 linearPlant = setmpcsignals(linearPlant);
 
