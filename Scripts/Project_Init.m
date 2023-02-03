@@ -140,8 +140,11 @@ mpc1 = mpc(linearPlant, Ts);
 run('Scripts\mpc1_design.m');
 
 %% Run Simulation
-disp('Simulation');
-
-sim("MPC_Quad");
-
+simflag = false;
+if (simflag == true)
+    disp('Simulation Start');
+    sim("MPC_Quad");
+else
+    disp('Simulation Skipped')
+end
 disp('End');
