@@ -68,9 +68,9 @@ io(10) = linio([quadPlant '/Quadcopter Model'], 6, 'openoutput');
 io(11) = linio([quadPlant '/Quadcopter Model'], 7, 'openoutput');
 io(12) = linio([quadPlant '/Quadcopter Model'], 8, 'openoutput');
 io(13) = linio([quadPlant '/Quadcopter Model'], 9, 'openoutput');
-io(14) = linio([quadPlant '/Quadcopter Model'], 10, 'openoutput');
-io(15) = linio([quadPlant '/Quadcopter Model'], 11, 'openoutput');
-io(16) = linio([quadPlant '/Quadcopter Model'], 12, 'openoutput');
+% io(14) = linio([quadPlant '/Quadcopter Model'], 10, 'openoutput');
+% io(15) = linio([quadPlant '/Quadcopter Model'], 11, 'openoutput');
+% io(16) = linio([quadPlant '/Quadcopter Model'], 12, 'openoutput');
 
 %% Create operating point specifications for the plant initial conditions
 
@@ -97,12 +97,12 @@ opspec.States(8).Known = true;
 opspec.States(8).x = 0;
 opspec.States(9).Known = true;
 opspec.States(9).x = 0;
-opspec.States(10).Known = true;
-opspec.States(10).x = 0;
-opspec.States(11).Known = true;
-opspec.States(11).x = 0;
-opspec.States(12).Known = true;
-opspec.States(12).x = 0;
+% opspec.States(10).Known = true;
+% opspec.States(10).x = 0;
+% opspec.States(11).Known = true;
+% opspec.States(11).x = 0;
+% opspec.States(12).Known = true;
+% opspec.States(12).x = 0;
 
 %% Compute operating point using these specifications
 disp('Compute Operating Point');
@@ -115,7 +115,8 @@ disp('Linearization');
 
 linearPlant = linearize(quadPlant, op, io);
 linearPlant.InputName = {'n1_rpm'; 'n2_rpm'; 'n3_rpm'; 'n4_rpm'};
-linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'd_phi'; 'theta'; 'd_theta'; 'psi'; 'd_psi'};
+% linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'd_phi'; 'theta'; 'd_theta'; 'psi'; 'd_psi'};
+linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'theta'; 'psi'};
 
 %% Examine the poles of the linearized plant
 disp('Check the Poles');
@@ -140,7 +141,7 @@ mpc1 = mpc(linearPlant, Ts);
 run('Scripts\mpc1_design.m');
 
 %% Run Simulation
-simflag = false;
+simflag = true;
 if (simflag == true)
     disp('Simulation Start');
     sim("MPC_Quad");
