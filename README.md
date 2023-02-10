@@ -1,13 +1,13 @@
 # MPC Quadcopter
 基于MPC控制器的简易四旋翼无人机模型
 
-一个简单的练手小项目
+一个简单的练手小项目 In Progress
 
 顺便做一个基于PID的控制器
 
 ## 四旋翼数学建模
 
-太多资料了不解释
+太多资料了，不解释
 
 $$\begin{bmatrix} \ddot{x} \\ \ddot{y} \\ \ddot{z} \end{bmatrix}=\frac{1}{m}\begin{bmatrix} (cos\phi sin\theta cos\psi +sin\phi sin\psi)\sum_1^4(-F_i) \\ (cos\phi sin\theta sin\psi-sin\phi cos\psi)\sum_1^4(-F_i) \\ mg+cos\phi cos\theta \sum_1^4(-F_i) \end{bmatrix}+\frac{1}{m}\begin{bmatrix} A_x & & \\ & A_y & \\ & & A_z \end{bmatrix}\begin{bmatrix}\dot{x} \\ \dot{y} \\ \dot{z}\end{bmatrix}$$
 
