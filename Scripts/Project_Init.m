@@ -1,7 +1,7 @@
 %% Project Init
 disp('Project MPC Quadcopter Start');
 
-load('MPCDesignerSession.mat');
+% load('MPCDesignerSession.mat');
 
 % Quadcopter model init
 run('Scripts\Quadcopter_model_init.m');
@@ -59,15 +59,28 @@ io(4) = linio([quadPlant '/n4_rpm'], 1, 'openinput');
 % io(15) = linio([quadPlant '/psi'], 11, 'openoutput');
 % io(16) = linio([quadPlant '/d_psi'], 12, 'openoutput');
 
-io(5) = linio([quadPlant '/Quadcopter Model'], 1, 'openoutput');
-io(6) = linio([quadPlant '/Quadcopter Model'], 2, 'openoutput');
-io(7) = linio([quadPlant '/Quadcopter Model'], 3, 'openoutput');
-io(8) = linio([quadPlant '/Quadcopter Model'], 4, 'openoutput');
-io(9) = linio([quadPlant '/Quadcopter Model'], 5, 'openoutput');
-io(10) = linio([quadPlant '/Quadcopter Model'], 6, 'openoutput');
-io(11) = linio([quadPlant '/Quadcopter Model'], 7, 'openoutput');
-io(12) = linio([quadPlant '/Quadcopter Model'], 8, 'openoutput');
-io(13) = linio([quadPlant '/Quadcopter Model'], 9, 'openoutput');
+io(5) = linio([quadPlant '/Demux1'], 1, 'openoutput');
+io(6) = linio([quadPlant '/Demux1'], 2, 'openoutput');
+io(7) = linio([quadPlant '/Demux1'], 3, 'openoutput');
+io(8) = linio([quadPlant '/Demux1'], 4, 'openoutput');
+io(9) = linio([quadPlant '/Demux1'], 5, 'openoutput');
+io(10) = linio([quadPlant '/Demux1'], 6, 'openoutput');
+io(11) = linio([quadPlant '/Demux1'], 7, 'openoutput');
+io(12) = linio([quadPlant '/Demux1'], 8, 'openoutput');
+io(13) = linio([quadPlant '/Demux1'], 9, 'openoutput');
+io(14) = linio([quadPlant '/Demux1'], 10, 'openoutput');
+io(15) = linio([quadPlant '/Demux1'], 11, 'openoutput');
+io(16) = linio([quadPlant '/Demux1'], 12, 'openoutput');
+
+% io(5) = linio([quadPlant '/Quadcopter Model'], 1, 'openoutput');
+% io(6) = linio([quadPlant '/Quadcopter Model'], 2, 'openoutput');
+% io(7) = linio([quadPlant '/Quadcopter Model'], 3, 'openoutput');
+% io(8) = linio([quadPlant '/Quadcopter Model'], 4, 'openoutput');
+% io(9) = linio([quadPlant '/Quadcopter Model'], 5, 'openoutput');
+% io(10) = linio([quadPlant '/Quadcopter Model'], 6, 'openoutput');
+% io(11) = linio([quadPlant '/Quadcopter Model'], 7, 'openoutput');
+% io(12) = linio([quadPlant '/Quadcopter Model'], 8, 'openoutput');
+% io(13) = linio([quadPlant '/Quadcopter Model'], 9, 'openoutput');
 % io(14) = linio([quadPlant '/Quadcopter Model'], 10, 'openoutput');
 % io(15) = linio([quadPlant '/Quadcopter Model'], 11, 'openoutput');
 % io(16) = linio([quadPlant '/Quadcopter Model'], 12, 'openoutput');
@@ -115,8 +128,8 @@ disp('Linearization');
 
 linearPlant = linearize(quadPlant, op, io);
 linearPlant.InputName = {'n1_rpm'; 'n2_rpm'; 'n3_rpm'; 'n4_rpm'};
-% linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'd_phi'; 'theta'; 'd_theta'; 'psi'; 'd_psi'};
-linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'theta'; 'psi'};
+linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'd_phi'; 'theta'; 'd_theta'; 'psi'; 'd_psi'};
+% linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'theta'; 'psi'};
 
 %% Examine the poles of the linearized plant
 disp('Check the Poles');
@@ -137,6 +150,7 @@ disp('MPC Init and Design');
 
 linearPlant = setmpcsignals(linearPlant);
 Ts = 0.05;
+% mpc1 = mpc(linearPlant, Ts);
 mpc1 = mpc(linearPlant, Ts);
 run('Scripts\mpc1_design.m');
 

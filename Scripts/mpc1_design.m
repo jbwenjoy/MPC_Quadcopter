@@ -11,7 +11,7 @@ mpc1.ControlHorizon = 5;
 %% specify nominal values for inputs and outputs
 mpc1.Model.Nominal.U = [4508; 4508; 4508; 4508];
 % mpc1.Model.Nominal.U = [5000; 5000; 5000; 5000];
-mpc1.Model.Nominal.Y = [0; 0; 0; 0; 0; 0; 0; 0; 0];
+mpc1.Model.Nominal.Y = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0];
 
 %% specify scale factors for inputs and outputs
 mpc1.MV(1).ScaleFactor = 10000;
@@ -27,9 +27,9 @@ mpc1.OV(6).ScaleFactor = 20;
 mpc1.OV(7).ScaleFactor = 3.1416;
 mpc1.OV(8).ScaleFactor = 3.1416;
 mpc1.OV(9).ScaleFactor = 3.1416;
-% mpc1.OV(10).ScaleFactor = 3.1416;
-% mpc1.OV(11).ScaleFactor = 3.1416;
-% mpc1.OV(12).ScaleFactor = 3.1416;
+mpc1.OV(10).ScaleFactor = 3.1416;
+mpc1.OV(11).ScaleFactor = 3.1416;
+mpc1.OV(12).ScaleFactor = 3.1416;
 
 %% specify constraints for MV and MV Rate
 mpc1.MV(1).Min = 0;
@@ -75,19 +75,19 @@ mpc1.OV(7).Min = -0.523598775598299;
 mpc1.OV(7).Max = 0.523598775598299;
 mpc1.OV(8).Min = -0.523598775598299;
 mpc1.OV(8).Max = 0.523598775598299;
-% mpc1.OV(9).Min = -0.523598775598299; % 偏航角无限制
-% mpc1.OV(9).Max = 0.523598775598299;
-% mpc1.OV(10).Min = -1.0471975511966;
-% mpc1.OV(10).Max = 1.0471975511966;
-% mpc1.OV(11).Min = -3.14159265358979;
-% mpc1.OV(11).Max = 3.14159265358979;
-% mpc1.OV(12).Min = -0.523598775598299;
-% mpc1.OV(12).Max = 0.523598775598299;
+mpc1.OV(9).Min = -0.523598775598299; % 偏航角无限制
+mpc1.OV(9).Max = 0.523598775598299;
+mpc1.OV(10).Min = -1.0471975511966;
+mpc1.OV(10).Max = 1.0471975511966;
+mpc1.OV(11).Min = -3.14159265358979;
+mpc1.OV(11).Max = 3.14159265358979;
+mpc1.OV(12).Min = -0.523598775598299;
+mpc1.OV(12).Max = 0.523598775598299;
 
 %% specify weights
 mpc1.Weights.MV = [1 1 1 1];
 mpc1.Weights.MVRate = [1 1 1 1];
-mpc1.Weights.OV = [1 0 1 0 10 0 1 1 1];
+mpc1.Weights.OV = [1 0 1 0 10 0 1 1 1 1 1 1];
 % mpc1.Weights.ECR = 100000;
 
 %% specify simulation options
