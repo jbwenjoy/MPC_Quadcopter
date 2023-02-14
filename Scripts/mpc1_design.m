@@ -87,7 +87,7 @@ mpc1.OV(12).Max = 0.523598775598299;
 %% specify weights
 mpc1.Weights.MV = [1 1 1 1];
 mpc1.Weights.MVRate = [1 1 1 1];
-mpc1.Weights.OV = [1 0 1 0 10 0 1 1 1 1 1 1];
+mpc1.Weights.OV = [1 0 1 0 100 0 1 1 1 1 1 1];
 % mpc1.Weights.ECR = 100000;
 
 %% specify simulation options

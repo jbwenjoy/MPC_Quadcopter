@@ -9,6 +9,9 @@ run('Scripts\Quadcopter_model_init.m');
 % PID-based controller init
 run('Scripts\PID_based_controller_init.m');
 
+% Linearized state-space model init
+run('Scripts\StateSpaceQuadModel.m');
+
 % load_system('D:\Bw Jiang\Documents\FCS\MPC_Quadcopter\Models\MPC_Quad.slx');
 
 %% Open quadcopter model
@@ -28,10 +31,10 @@ disp('Define IO for linearization');
 % io(3) = linio(quadPlant, 3, 'openinput');
 % io(4) = linio(quadPlant, 4, 'openinput');
 
-io(1) = linio([quadPlant '/n1_rpm'], 1, 'openinput');
-io(2) = linio([quadPlant '/n2_rpm'], 1, 'openinput');
-io(3) = linio([quadPlant '/n3_rpm'], 1, 'openinput');
-io(4) = linio([quadPlant '/n4_rpm'], 1, 'openinput');
+io(1) = linio([quadPlant '/Demux'], 1, 'openinput');
+io(2) = linio([quadPlant '/Demux'], 2, 'openinput');
+io(3) = linio([quadPlant '/Demux'], 3, 'openinput');
+io(4) = linio([quadPlant '/Demux'], 4, 'openinput');
 
 % io(5) = linio(quadPlant, 1, 'openoutput');
 % io(6) = linio(quadPlant, 2, 'openoutput');
@@ -59,31 +62,18 @@ io(4) = linio([quadPlant '/n4_rpm'], 1, 'openinput');
 % io(15) = linio([quadPlant '/psi'], 11, 'openoutput');
 % io(16) = linio([quadPlant '/d_psi'], 12, 'openoutput');
 
-io(5) = linio([quadPlant '/Demux1'], 1, 'openoutput');
-io(6) = linio([quadPlant '/Demux1'], 2, 'openoutput');
-io(7) = linio([quadPlant '/Demux1'], 3, 'openoutput');
-io(8) = linio([quadPlant '/Demux1'], 4, 'openoutput');
-io(9) = linio([quadPlant '/Demux1'], 5, 'openoutput');
-io(10) = linio([quadPlant '/Demux1'], 6, 'openoutput');
-io(11) = linio([quadPlant '/Demux1'], 7, 'openoutput');
-io(12) = linio([quadPlant '/Demux1'], 8, 'openoutput');
-io(13) = linio([quadPlant '/Demux1'], 9, 'openoutput');
-io(14) = linio([quadPlant '/Demux1'], 10, 'openoutput');
-io(15) = linio([quadPlant '/Demux1'], 11, 'openoutput');
-io(16) = linio([quadPlant '/Demux1'], 12, 'openoutput');
-
-% io(5) = linio([quadPlant '/Quadcopter Model'], 1, 'openoutput');
-% io(6) = linio([quadPlant '/Quadcopter Model'], 2, 'openoutput');
-% io(7) = linio([quadPlant '/Quadcopter Model'], 3, 'openoutput');
-% io(8) = linio([quadPlant '/Quadcopter Model'], 4, 'openoutput');
-% io(9) = linio([quadPlant '/Quadcopter Model'], 5, 'openoutput');
-% io(10) = linio([quadPlant '/Quadcopter Model'], 6, 'openoutput');
-% io(11) = linio([quadPlant '/Quadcopter Model'], 7, 'openoutput');
-% io(12) = linio([quadPlant '/Quadcopter Model'], 8, 'openoutput');
-% io(13) = linio([quadPlant '/Quadcopter Model'], 9, 'openoutput');
-% io(14) = linio([quadPlant '/Quadcopter Model'], 10, 'openoutput');
-% io(15) = linio([quadPlant '/Quadcopter Model'], 11, 'openoutput');
-% io(16) = linio([quadPlant '/Quadcopter Model'], 12, 'openoutput');
+io(5) = linio([quadPlant '/QuadModel'], 1, 'openoutput');
+io(6) = linio([quadPlant '/QuadModel'], 2, 'openoutput');
+io(7) = linio([quadPlant '/QuadModel'], 3, 'openoutput');
+io(8) = linio([quadPlant '/QuadModel'], 4, 'openoutput');
+io(9) = linio([quadPlant '/QuadModel'], 5, 'openoutput');
+io(10) = linio([quadPlant '/QuadModel'], 6, 'openoutput');
+io(11) = linio([quadPlant '/QuadModel'], 7, 'openoutput');
+io(12) = linio([quadPlant '/QuadModel'], 8, 'openoutput');
+io(13) = linio([quadPlant '/QuadModel'], 9, 'openoutput');
+io(14) = linio([quadPlant '/QuadModel'], 10, 'openoutput');
+io(15) = linio([quadPlant '/QuadModel'], 11, 'openoutput');
+io(16) = linio([quadPlant '/QuadModel'], 12, 'openoutput');
 
 %% Create operating point specifications for the plant initial conditions
 
