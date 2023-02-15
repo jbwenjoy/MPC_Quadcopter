@@ -100,12 +100,12 @@ opspec.States(8).Known = true;
 opspec.States(8).x = 0;
 opspec.States(9).Known = true;
 opspec.States(9).x = 0;
-% opspec.States(10).Known = true;
-% opspec.States(10).x = 0;
-% opspec.States(11).Known = true;
-% opspec.States(11).x = 0;
-% opspec.States(12).Known = true;
-% opspec.States(12).x = 0;
+opspec.States(10).Known = true;
+opspec.States(10).x = 0;
+opspec.States(11).Known = true;
+opspec.States(11).x = 0;
+opspec.States(12).Known = true;
+opspec.States(12).x = 0;
 
 %% Compute operating point using these specifications
 disp('Compute Operating Point');
@@ -139,7 +139,7 @@ open_system('Models\MPC_Quad.slx');
 disp('MPC Init and Design');
 
 linearPlant = setmpcsignals(linearPlant);
-Ts = 0.05;
+
 % mpc1 = mpc(linearPlant, Ts);
 mpc1 = mpc(linearPlant, Ts);
 run('Scripts\mpc1_design.m');

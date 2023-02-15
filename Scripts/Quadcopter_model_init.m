@@ -14,4 +14,4 @@ estim_hover_nrpm = 4355; % rpm
 %% Simulation condition init
 
 Ts = 0.005;
-T_total = 10;
+T_total = 30;
