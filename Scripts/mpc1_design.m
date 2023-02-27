@@ -1,5 +1,5 @@
 %% create MPC controller object with sample time
-mpc1 = mpc(linearPlant, 0.01);
+mpc1 = mpc(linearPlant, 0.05);
 %mpc1 = mpc(plant, 0.05);
 
 %% specify prediction horizon
@@ -22,6 +22,7 @@ mpc1.MV(1).ScaleFactor = 10000; % n1
 mpc1.MV(2).ScaleFactor = 10000; % n2
 mpc1.MV(3).ScaleFactor = 10000; % n3
 mpc1.MV(4).ScaleFactor = 10000; % n4
+
 mpc1.OV(1).ScaleFactor = 100; % x
 mpc1.OV(2).ScaleFactor = 10; % vx
 mpc1.OV(3).ScaleFactor = 100; % y
