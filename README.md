@@ -13,11 +13,18 @@
 
 把原来的12个输出量改为4个（位置xyz和偏航yaw），因为轨迹通常只需要这几个量
 
-目前可以以大约6m/s的速度跟踪圆圈轨迹
+目前可以以大约6m/s的速度跟踪圆圈轨迹，下图中的轨迹为一位于$$z=0$$、半径为10m的圆
 
 ![屏幕截图_20230227_215849](https://user-images.githubusercontent.com/71893666/221734470-75dfc473-668a-49a3-a0ee-dac02ca09cd8.png)
 
-但仍存在较大的稳态误差，尤其是高度，参数还没有专门去调
+![image](https://user-images.githubusercontent.com/71893666/221735408-42035e65-6157-42cb-9c7f-e2369f0e3d9d.png)
+
+![image](https://user-images.githubusercontent.com/71893666/221735458-a3076e59-5d39-4442-be44-658248d24c5a.png)
+
+![image](https://user-images.githubusercontent.com/71893666/221735575-256d7918-e711-44dc-bba3-aa162c20d7ad.png)
+
+
+但仍存在较大的稳态误差，尤其是高度，同时第一圈的性能很差，当然这部分是因为参数还没有专门去调
 
 ---
 
