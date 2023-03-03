@@ -48,13 +48,13 @@ mpc4sv.MV(4).RateMax = 10000;
 
 %% specify constraint softening for MV and MV Rate
 mpc4sv.MV(1).RateMinECR = 0.5;
-mpc4sv.MV(1).RateMaxECR = 0.2;
+mpc4sv.MV(1).RateMaxECR = 0.01;
 mpc4sv.MV(2).RateMinECR = 0.5;
-mpc4sv.MV(2).RateMaxECR = 0.2;
+mpc4sv.MV(2).RateMaxECR = 0.01;
 mpc4sv.MV(3).RateMinECR = 0.5;
-mpc4sv.MV(3).RateMaxECR = 0.2;
+mpc4sv.MV(3).RateMaxECR = 0.01;
 mpc4sv.MV(4).RateMinECR = 0.5;
-mpc4sv.MV(4).RateMaxECR = 0.2;
+mpc4sv.MV(4).RateMaxECR = 0.01;
 %% specify constraints for OV
 mpc4sv.OV(1).Min = -500; % x meter
 mpc4sv.OV(1).Max = 500;
@@ -68,7 +68,7 @@ mpc4sv.OV(3).Max = 50;
 %% specify weights
 mpc4sv.Weights.MV = [1 1 1 1];
 mpc4sv.Weights.MVRate = [1 1 1 1];
-mpc4sv.Weights.OV = [10 10 100 5];
+mpc4sv.Weights.OV = [1000 1000 1000 5];
 mpc4sv.Weights.ECR = 100000;
 
 %% specify simulation options

@@ -19,7 +19,7 @@ run('Scripts\Quadcopter_model_init.m');
 %quadPlant = 'MPC_Quad';
 %load_system(quadPlant);
 %open_system(quadPlant);
-quadPlant = 'Quadcopter_model_4SV';
+quadPlant = 'Quadcopter_model';
 load_system(quadPlant);
 open_system(quadPlant);
 
@@ -32,10 +32,17 @@ io(3) = linio([quadPlant '/Demux'], 3, 'openinput');
 io(4) = linio([quadPlant '/Demux'], 4, 'openinput');
 
 io(5) = linio([quadPlant '/QuadModel'], 1, 'openoutput');
-io(6) = linio([quadPlant '/QuadModel'], 3, 'openoutput');
-io(7) = linio([quadPlant '/QuadModel'], 5, 'openoutput');
-io(8) = linio([quadPlant '/QuadModel'], 11, 'openoutput');
-
+io(6) = linio([quadPlant '/QuadModel'], 2, 'openoutput');
+io(7) = linio([quadPlant '/QuadModel'], 3, 'openoutput');
+io(8) = linio([quadPlant '/QuadModel'], 4, 'openoutput');
+io(9) = linio([quadPlant '/QuadModel'], 5, 'openoutput');
+io(10) = linio([quadPlant '/QuadModel'], 6, 'openoutput');
+io(11) = linio([quadPlant '/QuadModel'], 7, 'openoutput');
+io(12) = linio([quadPlant '/QuadModel'], 8, 'openoutput');
+io(13) = linio([quadPlant '/QuadModel'], 9, 'openoutput');
+io(14) = linio([quadPlant '/QuadModel'], 10, 'openoutput');
+io(15) = linio([quadPlant '/QuadModel'], 11, 'openoutput');
+io(16) = linio([quadPlant '/QuadModel'], 12, 'openoutput');
 
 %% Create operating point specifications for the plant initial conditions
 
@@ -56,12 +63,12 @@ opspec.States(5).Known = true;
 opspec.States(5).x = 0;
 % opspec.States(6).Known = true;
 % opspec.States(6).x = 0;
-% opspec.States(7).Known = true;
-% opspec.States(7).x = 0;
+opspec.States(7).Known = true;
+opspec.States(7).x = 0;
 % opspec.States(8).Known = true;
 % opspec.States(8).x = 0;
-% opspec.States(9).Known = true;
-% opspec.States(9).x = 0;
+opspec.States(9).Known = true;
+opspec.States(9).x = 0;
 % opspec.States(10).Known = true;
 % opspec.States(10).x = 0;
 opspec.States(11).Known = true;
@@ -80,7 +87,7 @@ disp('Linearization');
 
 linearPlant = linearize(quadPlant, op, io);
 linearPlant.InputName = {'n1_rpm'; 'n2_rpm'; 'n3_rpm'; 'n4_rpm'};
-linearPlant.OutputName = {'x'; 'y'; 'z'; 'psi'};
+linearPlant.OutputName = {'x'; 'vx'; 'y'; 'vy'; 'z'; 'vz'; 'phi'; 'd_phi'; 'theta'; 'd_theta'; 'psi'; 'd_psi'};
 
 %% Examine the poles of the linearized plant
 disp('Check the Poles');
@@ -93,8 +100,8 @@ bdclose(quadPlant);
 %% Load MPC model
 disp('Load MPC Model');
 
-load_system('Models\MPC_Quad_4SV.slx');
-open_system('Models\MPC_Quad_4SV.slx');
+load_system('Models\MPC_Quad.slx');
+open_system('Models\MPC_Quad.slx');
 
 %% MPC Init and Design
 disp('MPC Init and Design');
@@ -102,14 +109,14 @@ disp('MPC Init and Design');
 linearPlant = setmpcsignals(linearPlant);
 
 % mpc1 = mpc(linearPlant, Ts);
-mpc4sv = mpc(linearPlant, Ts);
-run('Scripts\mpc4sv_design.m');
+mpc1 = mpc(linearPlant, Ts);
+run('Scripts\mpc1_design.m');
 
 %% Run Simulation
 simflag = false;
 if (simflag == true)
     disp('Simulation Start');
-    sim("MPC_Quad_4SV");
+    sim("MPC_Quad");
 else
     disp('Simulation Skipped')
 end

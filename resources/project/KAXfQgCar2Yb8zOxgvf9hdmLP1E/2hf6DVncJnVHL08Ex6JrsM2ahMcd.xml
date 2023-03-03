@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Info Type="StartUp" Visible="0" Icon="" File="Scripts/Project_Init.m" Name="Project_Init">
+    <Extension Value="2ade109f-5fdb-4040-8dec-75bc18bbcd83" Name="StartUpPrev"/>
+</Info>
