@@ -9,7 +9,7 @@
 
 更新了MPC权重，添加了新的可视化模块（需要在MATLAB中安装3dscope），移除了废弃的工程文件
 
-可以飞一个稍微复杂些的8字
+可以飞一个稍微复杂些的8字，结果可以在SavedData/TrackingResult20230303.fig查看
 
 ![image](https://user-images.githubusercontent.com/71893666/223416003-44f12782-4abf-411c-95dc-69de66f95615.png)
 
