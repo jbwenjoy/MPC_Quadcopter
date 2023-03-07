@@ -1,5 +1,5 @@
 # MPC Quadcopter
-基于Matlab MPC Toolbox的简易四旋翼无人机模型
+基于Matlab MPC Toolbox的简易四旋翼无人机控制仿真
 
 一个简单的练手小项目（MATLAB版本：2022b）
 
