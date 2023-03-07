@@ -11,6 +11,12 @@ Ct = 1.11e-5; % N*s^2/rad^2
 Cm = 1.0144e-7; % N*m*s^2/rad^2
 estim_hover_nrpm = 4355; % rpm
 
+%% Saved linearized state-space model init
+load("SavedData\matrixA.mat");
+load("SavedData\matrixB.mat");
+load("SavedData\matrixC.mat");
+load("SavedData\matrixD.mat");
+
 %% Simulation condition init
 
 Ts = 0.005;
