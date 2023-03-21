@@ -5,6 +5,18 @@
 
 ---
 
+## 2023-Mar-21
+
+修复了在期望偏航不为0时无人机会失稳的问题。当然也许我并没有彻底解决这一问题，只是让MPC认为期望的偏航角每时每刻都为0，这样就回避了MPC无法稳定控制偏航的问题。以下为偏航控制测试的结果。
+
+![image](https://user-images.githubusercontent.com/71893666/226502364-511e5ac1-9dea-4810-8d62-9921ef362492.png)
+
+![image](https://user-images.githubusercontent.com/71893666/226502380-5fa73bff-b4ae-4bc7-8e84-292b7318fbf6.png)
+
+![image](https://user-images.githubusercontent.com/71893666/226502387-6bc3e92a-07d9-47c6-89c7-8e351f59be73.png)
+
+---
+
 ## 2023-Mar-7
 
 更新了MPC权重，添加了新的可视化模块（需要在MATLAB中安装3dscope），移除了废弃的工程文件
