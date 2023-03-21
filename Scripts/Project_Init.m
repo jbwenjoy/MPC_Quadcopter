@@ -2,6 +2,7 @@
 disp('Project MPC Quadcopter Start');
 
 % load('MPCDesignerSession.mat');
+load('SavedData/initState.mat');
 
 % Quadcopter model init
 run('Scripts\Quadcopter_model_init.m');
@@ -16,10 +17,8 @@ run('Scripts\Quadcopter_model_init.m');
 
 %% Open quadcopter model
 
-%quadPlant = 'MPC_Quad';
-%load_system(quadPlant);
-%open_system(quadPlant);
-quadPlant = 'Quadcopter_model_4SV';
+% quadPlant = 'Quadcopter_model_4SV';
+quadPlant = 'Quadcopter_model_refined';
 load_system(quadPlant);
 open_system(quadPlant);
 
@@ -44,30 +43,30 @@ opspec = operspec(quadPlant);
 %% Initial states are 0.
 disp('Define Initial States with 0');
 
-opspec.States(1).Known = true;
-opspec.States(1).x = 0;
-% opspec.States(2).Known = true;
-% opspec.States(2).x = 0;
-opspec.States(3).Known = true;
-opspec.States(3).x = 0;
-% opspec.States(4).Known = true;
-% opspec.States(4).x = 0;
-opspec.States(5).Known = true;
-opspec.States(5).x = 0;
-% opspec.States(6).Known = true;
-% opspec.States(6).x = 0;
-% opspec.States(7).Known = true;
-% opspec.States(7).x = 0;
-% opspec.States(8).Known = true;
-% opspec.States(8).x = 0;
-% opspec.States(9).Known = true;
-% opspec.States(9).x = 0;
-% opspec.States(10).Known = true;
-% opspec.States(10).x = 0;
-opspec.States(11).Known = true;
-opspec.States(11).x = 0;
-% opspec.States(12).Known = true;
-% opspec.States(12).x = 0;
+% opspec.States(1).Known = true;
+% opspec.States(1).x = 0;
+% % opspec.States(2).Known = true;
+% % opspec.States(2).x = 0;
+% opspec.States(3).Known = true;
+% opspec.States(3).x = 0;
+% % opspec.States(4).Known = true;
+% % opspec.States(4).x = 0;
+% opspec.States(5).Known = true;
+% opspec.States(5).x = 0;
+% % opspec.States(6).Known = true;
+% % opspec.States(6).x = 0;
+% % opspec.States(7).Known = true;
+% % opspec.States(7).x = 0;
+% % opspec.States(8).Known = true;
+% % opspec.States(8).x = 0;
+% % opspec.States(9).Known = true;
+% % opspec.States(9).x = 0;
+% % opspec.States(10).Known = true;
+% % opspec.States(10).x = 0;
+% opspec.States(11).Known = true;
+% opspec.States(11).x = 0;
+% % opspec.States(12).Known = true;
+% % opspec.States(12).x = 0;
 
 %% Compute operating point using these specifications
 disp('Compute Operating Point');
